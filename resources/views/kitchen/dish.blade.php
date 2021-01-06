@@ -23,45 +23,52 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with default features</h3>
+                            <h3 class="card-title">Dishes</h3>
+                            <a href="/dish/create" class="btn btn-success float-right">Create</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            @if (session('message'))
+                                <div class="alert alert-success">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
                             <table id="dishes" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>Dish Name</th>
+                                        <th>Category Name</th>
+                                        <th>Created</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
+                                    @foreach ($dishes as $dish)
                                     <tr>
-                                        <td>ste</td>
-                                        <td>b</td>
-                                        <td>c</td>
-                                        <td>d</td>
-                                        <td>e</td>
+                                        <td>{{ $dish->name }}</td>
+                                        <td>{{ $dish->category->name }}</td>
+                                        <td>{{ $dish->created_at }}</td>
+                                        <td>
+                                            <div class="form-row">
+                                                <a class="btn btn-warning" href="/dish/{{ $dish->id }}/edit">Edit</a>
+                                            <form action="/dish/{{ $dish->id }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-danger ml-2">Delete</button>
+                                            </form>
+                                            </div>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>a</td>
-                                        <td>b</td>
-                                        <td>c</td>
-                                        <td>d</td>
-                                        <td>e</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
 
                                 <tfoot>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>Dish Name</th>
+                                        <th>Category Name</th>
+                                        <th>Created</th>
+                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
