@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DishCreateRequest;
 use App\Models\Category;
 use App\Models\Dish;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 use function PHPSTORM_META\map;
@@ -117,5 +118,37 @@ class DishesController extends Controller
     {
         $dish->delete();
         return back()->with('message', 'Disht remove successfully ');
+    }
+
+    public function order()
+    {
+        $status = array_flip(config('res.order_status'));
+        $orders = Order::whereIn('status', [1,2])->get();
+
+        return view('kitchen.order', compact('orders', 'status'));
+    }
+
+    public function approve(Order $order)
+    {
+        $order->status = config('res.order_status.processing');
+        $order->save();
+
+        return redirect()->back()->with('message', 'Order Approve');
+    }
+
+    public function cancel(Order $order)
+    {
+        $order->status = config('res.order_status.cancel');
+        $order->save();
+
+        return redirect()->back()->with('message', 'Order Rejected');
+    }
+
+    public function ready(Order $order)
+    {
+        $order->status = config('res.order_status.ready');
+        $order->save();
+
+        return redirect()->back()->with('message', 'Order Ready');
     }
 }

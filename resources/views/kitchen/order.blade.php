@@ -1,84 +1,90 @@
 @extends('layouts.master')
 
 @section('content')
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Kitchen Panel</h1>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Kitchen Panel</h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
-     <!-- Main content -->
+    <!-- Main content -->
     <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Dishes</h3>
+                            <a href="/dish/create" class="btn btn-success float-right">Create</a>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            @if (session('message'))
+                                <div class="alert alert-success">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                            <table id="dishes" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Dish Name</th>
+                                        <th>Table Number</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
+                                <tbody>
+                                    @foreach ($orders as $order)
+                                    <tr>
+                                        <td>{{ $order->dish->name }}</td>
+                                        <td>{{ $order->table_id }}</td>
+                                        <td>{{ $status[$order->status] }}</td>
+                                        <td>
+                                            {{-- <div> --}}
+                                                <a class="btn btn-primary" href="/order/{{ $order->id }}/approve">Approve</a>
+                                                <a class="btn btn-danger" href="/order/{{ $order->id }}/cancel">Cancel</a>
+                                                <a class="btn btn-success" href="/order/{{ $order->id }}/ready">Ready</a>
+                                            
+                                            {{-- </div> --}}
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
 
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
+                                <tfoot>
+                                    <tr>
+                                      <th>Dish Name</th>
+                                      <th>Table Number</th>
+                                      <th>Status</th>
+                                      <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-md-6 -->
+
             </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
+            <!-- /.col-md-6 -->
         </div>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
 @endsection
