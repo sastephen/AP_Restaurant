@@ -23,8 +23,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Dishes</h3>
-                            <a href="/dish/create" class="btn btn-success float-right">Create</a>
+                            <h3 class="card-title">Orders</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

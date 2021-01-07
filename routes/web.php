@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DishesController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Route::get('/order/{order}/approve', [DishesController::class, 'approve']);
 Route::get('/order/{order}/cancel', [DishesController::class, 'cancel']);
 Route::get('/order/{order}/ready', [DishesController::class, 'ready']);
 Route::get('/order/{order}/serve', [OrderController::class, 'serve']);
+
+Route::resource('/category', CategoryController::class);
 
 
 

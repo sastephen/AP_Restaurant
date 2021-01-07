@@ -69,6 +69,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>Orders</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="/category" class="nav-link {{ Request::segment(1) == 'category' ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Categories</p>
+                                    </a>
+                                </li>
+                                {{-- <li class="nav-item">
+                                    <a href="/order" class="nav-link {{ Request::segment(1) == 'table' ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tables</p>
+                                    </a>
+                                </li> --}}
                             </ul>
                         </li>
                     </ul>
@@ -90,7 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </form>
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            <strong>Copyright &copy; 2020 AP</strong> All rights
             reserved.
         </footer>
     </div>
