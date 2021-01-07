@@ -32,9 +32,9 @@ Route::resource('/category', CategoryController::class);
 
 
 Auth::routes([
-    'register' => false,
-    'reset' => false,
-    'verify' => false,
-    'confirm' => false,
+    'register' => true,
+    'reset' => true,
+    'verify' => true,
+    'confirm' => true,
 ]);
 
